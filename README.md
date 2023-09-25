@@ -34,6 +34,10 @@ installs react router dom, which will be used to redirect the pages
 
 installs the swiper, which will be used to swipe through the carousel
 
+##### `npm i @heroicons/react`
+
+installs heroicons, which will be used to get some icons
+
 ### Available Scripts
 
 In the project directory, you can run:
@@ -55,3 +59,4 @@ You may also see any lint errors in the console.
 ### Assets used
 
 - [Amazon assets](https://drive.google.com/file/d/1AJ73Ya_rmSFsBmILPlrZtjUibeN4uKM2/view)
+- [Icons](https://heroicons.com/)
