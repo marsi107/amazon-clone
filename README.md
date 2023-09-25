@@ -38,6 +38,10 @@ installs the swiper, which will be used to swipe through the carousel
 
 installs heroicons, which will be used to get some icons
 
+##### `npm i axios`
+
+installs axios, to make calls to APIs
+
 ### Available Scripts
 
 In the project directory, you can run:
