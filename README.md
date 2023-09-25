@@ -39,3 +39,7 @@ You may also see any lint errors in the console.
 
 - [React documentation](https://reactjs.org/)
 - [TailwindCSS documentation](https://tailwindcss.com/docs/guides/create-react-app)
+
+### Assets used
+
+- [Amazon assets](https://drive.google.com/file/d/1AJ73Ya_rmSFsBmILPlrZtjUibeN4uKM2/view)
