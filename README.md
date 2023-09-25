@@ -9,7 +9,7 @@ In this project a clone of amazon website will be created.
 - JavaScript
 - HTML
 
-## Environment and Set Up
+## Environment
 
 - Note that the name of the project cannot contain Capital letters
 
@@ -19,11 +19,17 @@ In this project a clone of amazon website will be created.
 - node.js should be installed
 - tailwindcss should be installed
 
-### Available Scripts
+### Set Up
 
 ##### `npx create-react-app ./`
 
 Creates the react app
+
+##### `npm i react-router-dom`
+
+Creates the react app
+
+### Available Scripts
 
 In the project directory, you can run:
 
