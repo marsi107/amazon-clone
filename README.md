@@ -15,6 +15,7 @@ In this project a clone of amazon website will be created.
 
 ### Dependecies
 
+- npm should be installed
 - node.js should be installed
 
 ### Available Scripts
