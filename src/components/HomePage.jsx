@@ -1,4 +1,4 @@
-import { Carousel, HomePageCard, CarouselCategory } from "./"
+import { Carousel, HomePageCard, CarouselCategory, CarouselProduct } from "./"
 
 
 const HomePage = () => {
@@ -37,6 +37,7 @@ const HomePage = () => {
                 </div>
             </div>
             <CarouselCategory />
+            <CarouselProduct />
         </div>        
     </div>
   )

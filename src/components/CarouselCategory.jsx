@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 
 const CarouselCategory = () => {
   return (
-    <div className="m-3 bg-white">
+    <div className="m-3 mt-6 bg-white">
         <div className="text-2xl font-semibold p-3">
             Shop by Category
         </div>
