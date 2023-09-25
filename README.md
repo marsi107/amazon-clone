@@ -9,16 +9,19 @@ In this project a clone of amazon website will be created.
 - JavaScript
 - HTML
 
-## Set Up the environment
+## Environment and Set Up
 
-- Run the following command to create the react app --> npx create-react-app ./
 - Note that the name of the project cannot contain Capital letters
 
 ### Dependecies
 
 - node.js should be installed
 
-#### Available Scripts
+### Available Scripts
+
+##### `npx create-react-app ./`
+
+Creates the react app
 
 In the project directory, you can run:
 
