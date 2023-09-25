@@ -18,6 +18,7 @@ In this project a clone of amazon website will be created.
 - npm should be installed
 - node.js should be installed
 - tailwindcss should be installed
+- swiper should be installed
 
 ### Set Up
 
@@ -27,7 +28,11 @@ Creates the react app
 
 ##### `npm i react-router-dom`
 
-Creates the react app
+installs react router dom, which will be used to redirect the pages
+
+##### `npm i swiper`
+
+installs the swiper, which will be used to swipe through the carousel
 
 ### Available Scripts
 
@@ -45,6 +50,7 @@ You may also see any lint errors in the console.
 
 - [React documentation](https://reactjs.org/)
 - [TailwindCSS documentation](https://tailwindcss.com/docs/guides/create-react-app)
+- [Swiper documentation](https://www.npmjs.com/package/swiper)
 
 ### Assets used
 
