@@ -5,7 +5,7 @@ In this project a clone of amazon website will be created.
 ## Tech Stack used
 
 - React
-- Tailwind
+- TailwindCSS
 - JavaScript
 - HTML
 
@@ -17,6 +17,7 @@ In this project a clone of amazon website will be created.
 
 - npm should be installed
 - node.js should be installed
+- tailwindcss should be installed
 
 ### Available Scripts
 
@@ -37,3 +38,4 @@ You may also see any lint errors in the console.
 ## Documentation used
 
 - [React documentation](https://reactjs.org/)
+- [TailwindCSS documentation](https://tailwindcss.com/docs/guides/create-react-app)
