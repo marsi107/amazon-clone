@@ -1,4 +1,4 @@
-import { Carousel, HomePageCard } from "./"
+import { Carousel, HomePageCard, CarouselCategory } from "./"
 
 
 const HomePage = () => {
@@ -33,9 +33,10 @@ const HomePage = () => {
                 img={"../images/home_grid_8.jpg"}
                 link={"Learn more"}/>
                 <div className="m-3 pt-9">
-                    <img className="xl:hidden" src="../images/banner_image_2.jpg" alt="" />
+                    <img className="xl:hidden" src="../images/banner_image_2.jpg" />
                 </div>
             </div>
+            <CarouselCategory />
         </div>        
     </div>
   )
