@@ -1,5 +1,7 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
+import { Search } from './'
+
 const NavBar = () => {
   return (
     <header className="min-w-[1000px]">
@@ -11,8 +13,8 @@ const NavBar = () => {
                     <div className="text-sm xl:text-base font-bold">Spain</div>
                 </div>
             </div>
-            <div className="flex">
-                middle
+            <div className="flex grow relative items-center">
+                <Search />
             </div>
             <div className="flex items-center m-4">
                 <div className="pr-4 pl-4">
