@@ -38,6 +38,9 @@ const HomePage = () => {
             </div>
             <CarouselCategory />
             <CarouselProduct />
+            <div className="h-[200px]">
+                <img className="h-[100%] m-auto" src="../images/banner_image.jpg" />
+            </div>
         </div>        
     </div>
   )
