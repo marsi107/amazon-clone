@@ -27,11 +27,10 @@ const ProductPage = () => {
         <div className="grid grid-cols-10 gap-2">
           <div className="col-span-3 p-8 rounded bg-white m-auto">
             <img src={`${product.image}`} />
-            ProductPage {product.title}
           </div>
-          <div className="col-span-5 bg-green-400">
-            <div>
-              <ProductDetails product={product} ratings={false} />
+          <div className="col-span-5 bg-white p-4 rounded divide-y divide-gray-400">
+            <div className="mb-3">
+              <ProductDetails product={product} ratings={true} />
             </div>
             <div>
 
