@@ -13,7 +13,8 @@ const Carousel = () => {
             navigation={true}
             modules={[Navigation, Autoplay]}
             autoplay={{
-                delay: 5000
+                delay: 5000,
+                disableOnInteraction: false,
             }}
             className="h-[50%]"
         >
