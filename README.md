@@ -42,6 +42,12 @@ installs heroicons, which will be used to get some icons
 
 installs axios, to make calls to APIs
 
+##### `npm i react-redux`
+
+##### `npm i @reduxjs/toolkit`
+
+installs redux, to pass states through components (like the amount of items in card and so on)
+
 ### Available Scripts
 
 In the project directory, you can run:
@@ -57,8 +63,10 @@ You may also see any lint errors in the console.
 ## Documentation used
 
 - [React documentation](https://reactjs.org/)
+- [API requests documentation](https://javascript.info/fetch)
 - [TailwindCSS documentation](https://tailwindcss.com/docs/guides/create-react-app)
 - [Swiper documentation](https://www.npmjs.com/package/swiper)
+- [Redux documentation](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
 
 ### Assets used
 
