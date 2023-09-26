@@ -1,6 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ProductDetails } from './'
+import { removeFromCart } from '../redux/cartSlice'
 import { ES_CURRENCY } from '../utils/constants'
 
 const Checkout = () => {
@@ -11,6 +12,7 @@ const Checkout = () => {
       subtotal + (product.price * product.quantity), 0
     )
   );
+  const dispatch = useDispatch();
 
   return (
     <div className="h-screen bg-amazoneClone-bg">
@@ -39,7 +41,11 @@ const Checkout = () => {
                             </Link>
                           </div>
                           <div>
-                            <button>Remove</button>
+                            <button className="text-sm xl:text-base font-semibold rounded text-blue-500 mt-2 mb-1"
+                              onClick={()=> dispatch(removeFromCart(product.id))}
+                            >
+                              Remove
+                            </button>
                           </div>
                           <div className="grid grid-cols-3 w-20 text-center">
                             <span className="text-xl xl:text-2xl bg-gray-400 rounded">-</span>

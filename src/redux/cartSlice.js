@@ -26,7 +26,18 @@ export const cartSlice = createSlice({
             state.productsNumber = state.productsNumber + parseInt(action.payload.quantity);
         },        
         removeFromCart: (state, action) => {
-
+            // Find the product to remove
+            const productToRemove = state.products.find((product) => 
+                product.id === action.payload
+            );
+            // Remove the cuantity from the product number
+            state.productsNumber -= productToRemove.quantity;
+            // Find the index of the product to remove on the products array
+            const productToRemoveIndex = state.products.findIndex((product) => 
+                product.id === action.payload
+            );
+            // Remove the product to remove from the array
+            state.products.splice(productToRemoveIndex, 1); /* 1 specifies that only one item should be removed */
         }
     }
 });
