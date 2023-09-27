@@ -7,6 +7,9 @@ In this project a clone of amazon website will be created.
 - React
 - TailwindCSS
 - JavaScript
+- Redux
+- Stripe
+- Node.js
 - HTML
 
 ## Environment
@@ -67,8 +70,10 @@ You may also see any lint errors in the console.
 - [TailwindCSS documentation](https://tailwindcss.com/docs/guides/create-react-app)
 - [Swiper documentation](https://www.npmjs.com/package/swiper)
 - [Redux documentation](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
+- [Stripe documentation](https://stripe.com/docs/checkout/quickstart)
 
 ### Assets used
 
 - [Amazon assets](https://drive.google.com/file/d/1AJ73Ya_rmSFsBmILPlrZtjUibeN4uKM2/view)
 - [Icons](https://heroicons.com/)
+- [store API](https://fakestoreapi.com)
