@@ -8,6 +8,7 @@ In this project a clone of amazon website will be created.
 - TailwindCSS
 - JavaScript
 - Redux
+- Axios
 - Stripe
 - Node.js
 - HTML
@@ -18,10 +19,15 @@ In this project a clone of amazon website will be created.
 
 ### Dependecies
 
-- npm should be installed
 - node.js should be installed
+- npm should be installed
 - tailwindcss should be installed
 - swiper should be installed
+- axios should be installed
+- heroicons should be installed
+- redux should be installed
+
+Also make sure that everything from the set up section is installed
 
 ### Set Up
 
