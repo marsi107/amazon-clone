@@ -31,6 +31,14 @@ Also make sure that everything from the set up section is installed
 
 ### Set Up
 
+##### `npm i`
+
+Install npm
+
+##### `npm i express`
+
+Install express
+
 ##### `npx create-react-app ./`
 
 Creates the react app
@@ -56,6 +64,14 @@ installs axios, to make calls to APIs
 ##### `npm i @reduxjs/toolkit`
 
 installs redux, to pass states through components (like the amount of items in card and so on)
+
+##### `npm i --save stripe`
+
+Install Stripe (to process payments)
+
+##### `npm i dotenv`
+
+Install dotenv (to load environment variables)
 
 ### Available Scripts
 
