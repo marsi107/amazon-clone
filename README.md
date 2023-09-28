@@ -27,6 +27,7 @@ You can check how to install the dependencies on the [Environment and Project Se
 - nodemon should be installed
 - stripe should be installed
 - dotenv should be installed
+- bcrypt should be installed
 
 ### Client
 
@@ -67,6 +68,10 @@ Install Stripe (to process payments)
 ##### `npm i dotenv`
 
 Install dotenv (to load environment variables)
+
+##### `npm i bcrypt`
+
+Install bcrypt (to hash passwords)
 
 ### Client
 

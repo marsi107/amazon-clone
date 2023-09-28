@@ -1,21 +1,23 @@
 import { LoginCredentials } from './';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 const LoginPage = () => {
 
     const onHandleLoginClick = () => {
-        fetch("/login-process", {
-            headers: {
-              "Content-Type": "application/json",
-            }
-            }).then(res => {                
-              if (res.ok) return res.json()              
-              return res.json().then(json => Promise.reject(json))
-            }).then(({ User }) => {
-              console.log(User)
-            }).catch(e => {
-              console.error(e.error)
-            })
+        const params = {
+            email: 'email1',
+            password: 'pass1',
+          };
+        
+        axios.post('/login-process', params).then(response => {
+            console.log(response.data);
+            // Handle the server response as needed
+        })
+        .catch(error => {
+            console.error(error);
+            // Handle any errors
+        });
     }
 
   return (

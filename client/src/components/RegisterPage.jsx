@@ -4,22 +4,26 @@ import { Link } from 'react-router-dom';
 const RegisterPage = () => {
 
     const onHandleRegisterClick = () => {
+        const params = {
+            name: 'name1',
+            email: 'email1',
+            password: 'pass1',
+          };
+
         fetch("/register-process", {
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
-            }
-            }).then(res => {                
-              if (res.ok) return res.json()              
-              return res.json().then(json => Promise.reject(json))
-            }).then(({ User }) => {
-              console.log(User)
-            }).catch(e => {
-              console.error(e.error)
-            })
-    }
-
-    const onHandleLoginClick = () => {
-        
+            },
+            body: JSON.stringify(params),
+        }).then(res => {                
+            if (res.ok) return res.json()              
+            return res.json().then(json => Promise.reject(json))
+        }).then(({ url }) => {
+            window.location = url
+        }).catch(e => {
+            console.error(e.error)
+        })
     }
 
   return (
