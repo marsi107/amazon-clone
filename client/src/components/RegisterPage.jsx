@@ -27,7 +27,7 @@ const RegisterPage = () => {
         <h1>Register</h1>
         <div>
             <label htmlFor="name">Name</label>
-            <input type="name" id="name" name="name" required />
+            <input className="border" type="name" id="name" name="name" required />
         </div>
         <LoginCredentials />
         <Link to={`/login`}>                            
