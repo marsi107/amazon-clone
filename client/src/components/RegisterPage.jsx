@@ -1,10 +1,10 @@
 import { LoginCredentials } from './';
 import { Link } from 'react-router-dom';
 
-const LoginPage = () => {
+const RegisterPage = () => {
 
-    const onHandleLoginClick = () => {
-        fetch("/login-process", {
+    const onHandleRegisterClick = () => {
+        fetch("/register-process", {
             headers: {
               "Content-Type": "application/json",
             }
@@ -18,22 +18,29 @@ const LoginPage = () => {
             })
     }
 
+    const onHandleLoginClick = () => {
+        
+    }
+
   return (
     <div>
-        <h1>Login</h1>
+        <h1>Register</h1>
+        <div>
+            <label htmlFor="name">Name</label>
+            <input type="name" id="name" name="name" required />
+        </div>
         <LoginCredentials />
-        <Link to={`/register`}>                            
-            Don't have an account? <span className="text-blue-500">Register</span>
+        <Link to={`/login`}>                            
+            Already registered? <span className="text-blue-500">Log In</span>
         </Link>
-        <button 
-        className="btn"
+        <button className="btn"
         type="submit"
-        onClick={onHandleLoginClick}
+        onClick={onHandleRegisterClick}
         >
-            Log In
+            Register
         </button>
     </div>
   )
 }
 
-export default LoginPage
+export default RegisterPage

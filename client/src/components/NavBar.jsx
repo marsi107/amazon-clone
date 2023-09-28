@@ -22,10 +22,12 @@ const NavBar = () => {
                 <Search />
             </div>
             <div className="flex items-center m-4">
-                <div className="pr-4 pl-4">
-                    <div className="text-xs xl:text-sm">Hello, sign in</div>
-                    <div className="text-sm xl:text-base font-bold">Accounts & Lists</div>
-                </div>
+                <Link to={"/login"}>
+                    <div className="pr-4 pl-4">
+                        <div className="text-xs xl:text-sm">Hello, sign in</div>
+                        <div className="text-sm xl:text-base font-bold">Accounts & Lists</div>
+                    </div>
+                </Link>                
                 <div className="pr-4 pl-4">
                     <div className="text-xs xl:text-sm">Returns</div>
                     <div className="text-sm xl:text-base font-bold">& Orders</div>
