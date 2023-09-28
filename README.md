@@ -1,6 +1,6 @@
 # Amazon Clone
 
-In this project a clone of amazon website will be created.
+In this project a full stack clone of amazon website will be created just for development purposes.
 
 ## Tech Stack used
 
