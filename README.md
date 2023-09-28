@@ -28,6 +28,8 @@ You can check how to install the dependencies on the [Environment and Project Se
 - stripe should be installed
 - dotenv should be installed
 - bcrypt should be installed
+- body-parser should be installed
+- jsonwebtoken should be installed
 
 ### Client
 
@@ -72,6 +74,14 @@ Install dotenv (to load environment variables)
 ##### `npm i bcrypt`
 
 Install bcrypt (to hash passwords)
+
+##### `npm i body-parser`
+
+Install body-parser (to parse the body of the requests)
+
+##### `npm i jsonwebtoken`
+
+Install jsonwebtoken (to get a token with the logged user)
 
 ### Client
 

@@ -1,17 +1,24 @@
 require('dotenv').config()
 const express = require("express")
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
+const bcrypt = require("bcrypt")
+const bodyParser = require("body-parser")
+const jwt = require("jsonwebtoken")
 const app = express()
 app.use(express.json())
 app.use(express.static("../"))
 app.use(express.urlencoded({ extended: false}))
-
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
-const bcrypt = require("bcrypt")
+app.use(bodyParser.json());
 
 const CLIENT_URL = 'http://localhost:3000';
+const secretKey = process.env.SESSION_SECRET_KEY;
 
 // TODO put this into a DB
-const users = []
+const users = [
+  { id: 1, name: "name1", email: 'user1@a.com', password: 'p1' },
+  { id: 2, name: "name2", email: 'user2@a.com', password: 'p2' },
+];
+
 
 app.get("/", (req, res)=>{
     res.json({"Server":"Server running on http://localhost:5000"})
@@ -23,6 +30,15 @@ app.get("/login-process", async (req, res)=>{
 
 app.post("/login-process", async (req, res)=>{
   const { email, password } = req.body;
+
+  const userFound = users.find(user => user.email === email && user.password === password);
+
+  if (!userFound) {
+    res.status(401).json({ message: 'Invalid credentials' });
+  } else {
+    const token = jwt.sign({ userId: userFound.id }, secretKey, { expiresIn: '12h' });
+    res.json({ token });
+  }
 
   console.log(`email is ${email} and password is ${password}`)
 })
