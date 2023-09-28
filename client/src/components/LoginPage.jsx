@@ -1,17 +1,17 @@
 import { LoginCredentials } from './';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 const LoginPage = () => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const email = useSelector((state)=> state.userHandling.email);
+    const password = useSelector((state)=> state.userHandling.password);
 
     const onHandleLoginClick = () => {
         const params = {
-            email: 'user1@a.com',
-            password: 'p1',
+            email: email.payload,
+            password: password.payload,
           };
         
         axios.post('/login-process', params).then(response => {
