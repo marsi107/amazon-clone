@@ -21,11 +21,13 @@ const LoginPage = () => {
 
             // Store the token in local storage or a secure cookie
             localStorage.setItem('token', token);
+            window.location = "/"
             console.log("Login successful for user" + params.email)
         })
         .catch(error => {
+            const message = error.response.data.message
             console.error('Login failed:', error);
-            // TODO Handle login failure, show an error message, etc.
+            alert('Login failed: ' + error.response.data.message);
         });
     }
 
