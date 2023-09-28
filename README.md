@@ -4,68 +4,63 @@ In this project a clone of amazon website will be created.
 
 ## Tech Stack used
 
-- React
-- TailwindCSS
 - JavaScript
+- React
+- Express
+- TailwindCSS
 - Redux
 - Axios
 - Stripe
-- Node.js
+- Node
 - HTML
 
-## Environment
+## Dependecies
 
-- Note that the name of the project cannot contain Capital letters
+You can check how to install the dependencies on the [Environment and Project Set Up](#environment-and-project-set-up) section
 
-### Dependecies
+- npm should be installed
+
+### Server
 
 - node.js should be installed
-- npm should be installed
+- express.js should be installed
+- nodemon should be installed
+- stripe should be installed
+- dotenv should be installed
+
+### Client
+
+- react should be installed
+- react-router-dom should be installed
 - tailwindcss should be installed
 - swiper should be installed
-- axios should be installed
 - heroicons should be installed
+- axios should be installed
 - redux should be installed
 
-Also make sure that everything from the set up section is installed
-
-### Set Up
+## Environment and Project Set Up
 
 ##### `npm i`
 
 Install npm
 
+After installing npm on a global scope, you should create two folders, one for the server and one for the client
+
+### Server
+
+##### `npm init -y`
+
+To create a project with the initial package.json
+
 ##### `npm i express`
 
 Install express
 
-##### `npx create-react-app ./`
+##### `npm i nodemon -D`
 
-Creates the react app
+Install nodemon as a devDependency
 
-##### `npm i react-router-dom`
-
-installs react router dom, which will be used to redirect the pages
-
-##### `npm i swiper`
-
-installs the swiper, which will be used to swipe through the carousel
-
-##### `npm i @heroicons/react`
-
-installs heroicons, which will be used to get some icons
-
-##### `npm i axios`
-
-installs axios, to make calls to APIs
-
-##### `npm i react-redux`
-
-##### `npm i @reduxjs/toolkit`
-
-installs redux, to pass states through components (like the amount of items in card and so on)
-
-##### `npm i --save stripe`
+##### `npm i stripe`
 
 Install Stripe (to process payments)
 
@@ -73,9 +68,62 @@ Install Stripe (to process payments)
 
 Install dotenv (to load environment variables)
 
-### Available Scripts
+### Client
 
-In the project directory, you can run:
+##### `npx create-react-app ./`
+
+Creates the react app
+
+- Note that the name of the project cannot contain Capital letters
+- The ./ will create the react app on the current folder from the console that is triggered
+
+##### `npm i react-router-dom`
+
+Install react router dom, which will be used to navigate between pages
+
+#### TailwindCSS
+
+To install tailwind just follow the steps on the [documentation](https://tailwindcss.com/docs/guides/create-react-app)
+
+##### `npm i swiper`
+
+Install the swiper, which will be used to swipe through the carousels
+
+##### `npm i @heroicons/react`
+
+Install heroicons, which will be used to get some icons
+
+##### `npm i axios`
+
+Install axios, to make API calls
+
+##### `npm i react-redux`
+
+##### `npm i @reduxjs/toolkit`
+
+Install redux, to pass states through components (like the amount of items in card and so on)
+
+## Available Scripts
+
+You can see all this scripts in the package.json
+
+### Server
+
+In the server directory, you can run:
+
+##### `npm run dev`
+
+Runs the app in the development mode with nodemon.\
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
+
+##### `npm run start`
+
+Runs the app with node.\
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
+
+### Client
+
+In the client directory, you can run:
 
 ##### `npm start`
 
@@ -84,10 +132,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-##### `npm init -y`
-
-To get a package.json
 
 ## Documentation used
 
@@ -98,8 +142,8 @@ To get a package.json
 - [Redux documentation](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
 - [Stripe documentation](https://stripe.com/docs/checkout/quickstart)
 
-### Assets used
+## Assets used
 
 - [Amazon assets](https://drive.google.com/file/d/1AJ73Ya_rmSFsBmILPlrZtjUibeN4uKM2/view)
 - [Icons](https://heroicons.com/)
-- [store API](https://fakestoreapi.com)
+- [Store API](https://fakestoreapi.com)
