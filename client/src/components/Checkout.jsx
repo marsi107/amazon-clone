@@ -14,6 +14,25 @@ const Checkout = () => {
   );
   const dispatch = useDispatch();
 
+  const onHandleCheckoutClick = () => {
+    console.log("onHandleCheckoutclick")
+
+    fetch("/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(res => {
+      if (res.ok) return res.json()
+      return res.json().then(json => Promise.reject(json))
+    }).then(({ url }) => {
+      console.log(url)
+      window.location = url
+    }).catch(e => {
+      console.error(e.error)
+    })
+  }
+
   return (
     <div className="h-screen bg-amazoneClone-bg">
       <div className="min-w-[1000px] max-w-[1500px] m-auto pt-8">
@@ -77,7 +96,7 @@ const Checkout = () => {
             <div className="text-base xl:text-lg mb-4 mr-4">
               Subtotal ({productsNumber} items): <span className="font-semibold">{ES_CURRENCY.format(subtotal)}</span>
             </div>
-            <button className="btn">Checkout</button>
+            <button className="btn" onClick={onHandleCheckoutClick}>Checkout</button>
           </div>
         </div>
       </div>
