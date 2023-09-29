@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require("express")
+const sqlite3 = require('sqlite3');
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 const bcrypt = require("bcrypt")
 const bodyParser = require("body-parser")
@@ -19,13 +20,27 @@ const users = [
   { id: 2, name: "user2", email: 'user2@a.com', password: '$2b$10$SjG64zy2c3jo58kZgOiruO6LhXS6.CmIkgzz42knGQn2HC3Zz8S3u' },
 ];
 
+const db = new sqlite3.Database('./amazon-clone.db', (err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err.message);
+  } else {
+    console.log('Connected to the database.');
+  }
+});
+
+app.get('/get-test', (req, res) => {
+  db.all('SELECT * FROM test', (err, rows) => {
+    if (err) {
+      return res.status(500).send(err.message);
+    }
+    res.json(rows);
+  });
+});
+
+
 
 app.get("/", (req, res)=>{
     res.json({"Server":"Server running on http://localhost:5000"})
-})
-
-app.get("/login-process", async (req, res)=>{
-  res.json({"User": "UserTest"})
 })
 
 app.post("/login-process", async (req, res)=>{
