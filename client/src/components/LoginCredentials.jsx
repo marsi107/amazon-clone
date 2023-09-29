@@ -30,7 +30,7 @@ const LoginCredentials = () => {
           type="email"
           id="email"
           name="email"
-          placeholder="Email"
+          placeholder="Your Email"
           required
           value={localEmail}
           onChange={(e) => setLocalEmail(e.target.value)}
@@ -43,7 +43,7 @@ const LoginCredentials = () => {
           type="password"
           id="password"
           name="password"
-          placeholder="Password"
+          placeholder="Your Password"
           required
           value={localPassword}
           onChange={(e) => setLocalPassword(e.target.value)}

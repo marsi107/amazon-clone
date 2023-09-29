@@ -1,13 +1,19 @@
 import { LoginCredentials } from './';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const RegisterPage = () => {
 
+    const [localName, setLocalName] = useState('');
+    const email = useSelector((state)=> state.userHandling.email);
+    const password = useSelector((state)=> state.userHandling.password);
+
     const onHandleRegisterClick = () => {
         const params = {
-            name: 'name1',
-            email: 'email1',
-            password: 'pass1',
+            name: localName,
+            email: email.payload,
+            password: password.payload,
           };
 
         fetch("/register-process", {
@@ -31,7 +37,15 @@ const RegisterPage = () => {
         <h1>Register</h1>
         <div>
             <label htmlFor="name">Name</label>
-            <input className="border" type="name" id="name" name="name" required />
+            <input 
+            className="border" 
+            type="name" 
+            id="name" 
+            name="name" 
+            placeholder="Your Name"
+            required
+            onChange={(e) => setLocalName(e.target.value)}
+            />
         </div>
         <LoginCredentials />
         <Link to={`/login`}>                            

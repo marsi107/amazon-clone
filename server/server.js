@@ -33,7 +33,6 @@ app.post("/login-process", async (req, res)=>{
 
   const authenticatePassword = async (password) => {
     for(let i = 0; i < users.length; i++){
-      console.log(users[i])
       if(await bcrypt.compare(password, users[i].password)) return true;
     }
     return false;
