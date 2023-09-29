@@ -5,7 +5,12 @@ import { useSelector } from 'react-redux'
 import { Search } from './'
 
 const NavBar = () => {
-    const cartNum = useSelector((state) => state.cart.productsNumber)
+    const cartNum = useSelector((state) => state.cart.productsNumber);
+    
+    const stateUserName = useSelector((state)=> state.userHandling.name.payload);
+    const isUserLoggedIn = useSelector((state)=> state.userHandling.userLoggedIn.payload);
+    let userName = isUserLoggedIn ? stateUserName : "sign in";
+    console.log('isUserLoggedIn ' + isUserLoggedIn)
   return (
     <header className="min-w-[1000px]">
         <div className="flex bg-amazoneClone text-white h-[60px]">
@@ -24,7 +29,7 @@ const NavBar = () => {
             <div className="flex items-center m-4">
                 <Link to={"/login"}>
                     <div className="pr-4 pl-4">
-                        <div className="text-xs xl:text-sm">Hello, sign in</div>
+                        <div className="text-xs xl:text-sm">Hello, {userName}</div>
                         <div className="text-sm xl:text-base font-bold">Accounts & Lists</div>
                     </div>
                 </Link>                

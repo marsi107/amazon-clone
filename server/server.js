@@ -48,7 +48,7 @@ app.post("/login-process", async (req, res)=>{
         res.status(401).json({ message: 'Invalid password' });
       } else {
         const token = jwt.sign({ userId: userFound.id }, secretKey, { expiresIn: '12h' });
-        res.json({ token });
+        res.json({ token, userFound, userLoggedIn: true });
       }
     });
   }

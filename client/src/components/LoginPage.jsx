@@ -1,12 +1,13 @@
 import { LoginCredentials } from './';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { updateName, updateUserLoggedIn } from '../redux/userHandlingSlice';
 
 const LoginPage = () => {
-
     const email = useSelector((state)=> state.userHandling.email);
     const password = useSelector((state)=> state.userHandling.password);
+    const dispatch = useDispatch();
 
     const onHandleLoginClick = () => {
         const params = {
@@ -17,15 +18,17 @@ const LoginPage = () => {
         axios.post('/login-process', params).then(response => {
             console.log(response.data);
             
-            const { token } = response.data;
+            const { token, userFound, userLoggedIn } = response.data;
 
             // Store the token in local storage or a secure cookie
             localStorage.setItem('token', token);
-            window.location = "/"
-            console.log("Login successful for user" + params.email)
+            dispatch(updateName({ type: 'UPDATE_NAME', payload: userFound.name }));
+            dispatch(updateUserLoggedIn({ type: 'UPDATE_USER_LOGGEDIN', payload: userLoggedIn }));
+            //window.location = "/"
+            console.log(userFound.name)
+            console.log('userLoggedIn ' +  userLoggedIn)
         })
         .catch(error => {
-            const message = error.response.data.message
             console.error('Login failed:', error);
             alert('Login failed: ' + error.response.data.message);
         });
