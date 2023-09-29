@@ -80,18 +80,18 @@ app.post("/register-process", async (req, res)=>{
 
   try{
     const hashedPassword = await bcrypt.hash(password, 10)
-    users.push({
-      id: Date.now().toString(),
-      name: name,
-      email: email,
-      password: hashedPassword
-    })
-    res.json({url: '/login'})
+    const query = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+
+    db.run(query, [name, email, hashedPassword], function (err) {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }else{
+        res.json({url: '/login'})
+      }
+    });
   }catch{
-    res.json({url: '/register'})
-  } 
-  // TODO remove this comment when finished
-  console.log(users)
+      res.json({url: '/register'})
+  }
 })
 
 

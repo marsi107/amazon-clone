@@ -13,6 +13,10 @@ const App = () => {
   const dispatch = useDispatch();
 
   const checkInitialState = async () =>{
+
+    // Call the get-users when the app start, so the server has all the users info used to user Auth
+    await axios.get('/get-users');
+
     if(!userLoggedIn && token){
       const params = {
         userId: userId
