@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { HomePage, NavBar, Checkout, ProductPage, SearchResults, LoginPage, RegisterPage } from './components'
+import { HomePage, NavBar, Checkout, ProductPage, SearchResults, LoginPage, RegisterPage, AccountPage } from './components'
 import { updateName, updateEmail, updatePassword, updateUserLoggedIn } from './redux/userHandlingSlice';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
@@ -46,6 +46,7 @@ const App = () => {
           <Route  path="/search" element={<SearchResults />}/>
           <Route  path="/login" element={<LoginPage />}/>
           <Route  path="/register" element={<RegisterPage />}/>
+          <Route  path="/account" element={<AccountPage />}/>
       </Routes>
     </BrowserRouter>
   )

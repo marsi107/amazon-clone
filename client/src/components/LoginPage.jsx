@@ -2,7 +2,7 @@ import { LoginCredentials } from './';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import { updateName, updateUserLoggedIn } from '../redux/userHandlingSlice';
+import { updateName, updateEmail, updatePassword, updateUserLoggedIn } from '../redux/userHandlingSlice';
 
 const LoginPage = () => {
     const email = useSelector((state)=> state.userHandling.email);
@@ -21,8 +21,10 @@ const LoginPage = () => {
             // Store the token in local storage or a secure cookie
             localStorage.setItem('token', token);
             localStorage.setItem('userId', userFound.id);
-            dispatch(updateName({ type: 'UPDATE_NAME', payload: userFound.name }));
-            dispatch(updateUserLoggedIn({ type: 'UPDATE_USER_LOGGEDIN', payload: userLoggedIn }));
+            dispatch(updateName({ type: 'UPDATE_NAME', payload: userFound.name }))    
+            dispatch(updateEmail({ type: 'UPDATE_EMAIL', payload: userFound.email }))    
+            dispatch(updatePassword({ type: 'UPDATE_PASSWORD', payload: userFound.password }))    
+            dispatch(updateUserLoggedIn({ type: 'UPDATE_USER_LOGGEDIN', payload: userLoggedIn })) 
             window.location = "/"
         })
         .catch(error => {
