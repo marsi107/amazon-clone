@@ -7,6 +7,7 @@ In this project a full stack clone of amazon website will be created just for de
 - JavaScript
 - React
 - Express
+- SQL
 - TailwindCSS
 - Redux
 - Axios
@@ -30,6 +31,7 @@ You can check how to install the dependencies on the [Environment and Project Se
 - bcrypt should be installed
 - body-parser should be installed
 - jsonwebtoken should be installed
+- sqlite3 should be installed
 
 ### Client
 
@@ -82,6 +84,10 @@ Install body-parser (to parse the body of the requests)
 ##### `npm i jsonwebtoken`
 
 Install jsonwebtoken (to get a token with the logged user)
+
+##### `npm i sqlite3`
+
+Install sqlite3 (to interact with the SQLite DB)
 
 ### Client
 
@@ -156,6 +162,7 @@ You may also see any lint errors in the console.
 - [Swiper documentation](https://www.npmjs.com/package/swiper)
 - [Redux documentation](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
 - [Stripe documentation](https://stripe.com/docs/checkout/quickstart)
+- [SQLite documentation](https://www.sqlite.org/docs.html)
 
 ## Assets used
 
