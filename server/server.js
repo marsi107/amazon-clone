@@ -15,8 +15,8 @@ const secretKey = process.env.SESSION_SECRET_KEY;
 
 // TODO put this into a DB
 const users = [
-  { id: 1, name: "name1", email: 'user1@a.com', password: 'p1' },
-  { id: 2, name: "name2", email: 'user2@a.com', password: 'p2' },
+  { id: 1, name: "user1", email: 'user1@a.com', password: '$2b$10$OEGDTjSQLOH9UoLz5.diI.sMSuTkKYwhZLn4k980VjSNPbMRVek9a' },
+  { id: 2, name: "user2", email: 'user2@a.com', password: '$2b$10$SjG64zy2c3jo58kZgOiruO6LhXS6.CmIkgzz42knGQn2HC3Zz8S3u' },
 ];
 
 
@@ -31,16 +31,28 @@ app.get("/login-process", async (req, res)=>{
 app.post("/login-process", async (req, res)=>{
   const { email, password } = req.body;
 
-  const userFound = users.find(user => user.email === email && user.password === password);
-
-  if (!userFound) {
-    res.status(401).json({ message: 'Invalid credentials' });
-  } else {
-    const token = jwt.sign({ userId: userFound.id }, secretKey, { expiresIn: '12h' });
-    res.json({ token });
+  const authenticatePassword = async (password) => {
+    for(let i = 0; i < users.length; i++){
+      console.log(users[i])
+      if(await bcrypt.compare(password, users[i].password)) return true;
+    }
+    return false;
   }
 
-  console.log(`email is ${email} and password is ${password}`)
+  const userFound = users.find(user => user.email === email);
+
+  if (!userFound) {
+    res.status(401).json({ message: 'Invalid email' });
+  } else {
+    authenticatePassword(password).then(passOK=>{
+      if(!passOK){
+        res.status(401).json({ message: 'Invalid password' });
+      } else {
+        const token = jwt.sign({ userId: userFound.id }, secretKey, { expiresIn: '12h' });
+        res.json({ token });
+      }
+    });
+  }
 })
 
 app.post("/register-process", async (req, res)=>{
