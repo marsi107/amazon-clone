@@ -14,12 +14,6 @@ app.use(bodyParser.json());
 const CLIENT_URL = 'http://localhost:3000';
 const secretKey = process.env.SESSION_SECRET_KEY;
 
-// TODO put this into a DB
-const users = [
-  { id: 1, name: "user1", email: 'user1@a.com', password: '$2b$10$OEGDTjSQLOH9UoLz5.diI.sMSuTkKYwhZLn4k980VjSNPbMRVek9a' },
-  { id: 2, name: "user2", email: 'user2@a.com', password: '$2b$10$SjG64zy2c3jo58kZgOiruO6LhXS6.CmIkgzz42knGQn2HC3Zz8S3u' },
-];
-
 const db = new sqlite3.Database('./amazon-clone.db', (err) => {
   if (err) {
     console.error('Error connecting to the database:', err.message);
@@ -28,8 +22,9 @@ const db = new sqlite3.Database('./amazon-clone.db', (err) => {
   }
 });
 
-app.get('/get-test', (req, res) => {
-  db.all('SELECT * FROM test', (err, rows) => {
+// TODO for dev purposes, remove once development is finished
+app.get('/get-users', (req, res) => {
+  db.all('SELECT * FROM users', (err, rows) => {
     if (err) {
       return res.status(500).send(err.message);
     }
