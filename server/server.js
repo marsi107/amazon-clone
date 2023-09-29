@@ -69,6 +69,7 @@ app.post("/register-process", async (req, res)=>{
   }catch{
     res.json({url: '/register'})
   } 
+  // TODO remove this comment when finished
   console.log(users)
 })
 
