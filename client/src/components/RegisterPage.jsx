@@ -28,7 +28,10 @@ const RegisterPage = () => {
         }).then(({ url }) => {
             window.location = url
         }).catch(e => {
-            console.error(e.error)
+            console.error(e.error);
+            if(e.error == "SQLITE_CONSTRAINT: UNIQUE constraint failed: users.email"){
+                alert('Register failed: Email already used');
+            }            
         })
     }
 
