@@ -54,6 +54,17 @@ app.post("/login-process", async (req, res)=>{
   }
 })
 
+app.post("/refresh", async (req, res)=>{
+  const { userId } = req.body;
+  const userFound = users.find(user => user.id == userId);
+
+  if (!userFound) {
+    res.status(401).json({ message: 'Invalid user id' });
+  } else {
+    res.json({ userFound });
+  };
+})
+
 app.post("/register-process", async (req, res)=>{
   const { name, email, password } = req.body;
 

@@ -10,7 +10,7 @@ const NavBar = () => {
     const stateUserName = useSelector((state)=> state.userHandling.name.payload);
     const isUserLoggedIn = useSelector((state)=> state.userHandling.userLoggedIn.payload);
     let userName = isUserLoggedIn ? stateUserName : "sign in";
-    console.log('isUserLoggedIn ' + isUserLoggedIn)
+
   return (
     <header className="min-w-[1000px]">
         <div className="flex bg-amazoneClone text-white h-[60px]">

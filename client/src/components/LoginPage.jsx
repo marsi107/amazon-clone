@@ -15,18 +15,15 @@ const LoginPage = () => {
             password: password.payload,
           };
         
-        axios.post('/login-process', params).then(response => {
-            console.log(response.data);
-            
+        axios.post('/login-process', params).then(response => {            
             const { token, userFound, userLoggedIn } = response.data;
 
             // Store the token in local storage or a secure cookie
             localStorage.setItem('token', token);
+            localStorage.setItem('userId', userFound.id);
             dispatch(updateName({ type: 'UPDATE_NAME', payload: userFound.name }));
             dispatch(updateUserLoggedIn({ type: 'UPDATE_USER_LOGGEDIN', payload: userLoggedIn }));
-            //window.location = "/"
-            console.log(userFound.name)
-            console.log('userLoggedIn ' +  userLoggedIn)
+            window.location = "/"
         })
         .catch(error => {
             console.error('Login failed:', error);
