@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { ProductDetails } from './'
 import { addToCart } from '../redux/cartSlice'
@@ -11,6 +11,7 @@ const ProductPage = () => {
   const {id} = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState("1");
+  const isUserLoggedIn = useSelector((state)=> state.userHandling.userLoggedIn.payload);
   const dispatch = useDispatch();
 
   const getProduct = () => { 
@@ -77,7 +78,7 @@ const ProductPage = () => {
                 <option value="3">3</option>
               </select>
             </div>
-            <Link to={"/checkout"}>
+            <Link to={isUserLoggedIn ? "/checkout" : "/login"}>
               <button 
               className="btn"
               onClick={() => dispatch(addToCart(addQuantityToProduct()))}

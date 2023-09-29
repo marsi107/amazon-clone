@@ -27,7 +27,7 @@ const NavBar = () => {
                 <Search />
             </div>
             <div className="flex items-center m-4">
-                <Link to={"/login"}>
+                <Link to={isUserLoggedIn ? "/account" :"/login"}>
                     <div className="pr-4 pl-4">
                         <div className="text-xs xl:text-sm">Hello, {userName}</div>
                         <div className="text-sm xl:text-base font-bold">Accounts & Lists</div>
@@ -37,7 +37,7 @@ const NavBar = () => {
                     <div className="text-xs xl:text-sm">Returns</div>
                     <div className="text-sm xl:text-base font-bold">& Orders</div>
                 </div>
-                <Link to={"/checkout"}>
+                <Link to={isUserLoggedIn ? "/checkout" : "/login"}>
                     <div className="flex pr-3 pl-3">
                         <ShoppingCartIcon className="h-[48px]" />
                         <div className="relative">
