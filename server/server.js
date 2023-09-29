@@ -22,17 +22,17 @@ const db = new sqlite3.Database('./amazon-clone.db', (err) => {
   }
 });
 
-// TODO for dev purposes, remove once development is finished
+let users = [];
+
 app.get('/get-users', (req, res) => {
   db.all('SELECT * FROM users', (err, rows) => {
     if (err) {
       return res.status(500).send(err.message);
     }
-    res.json(rows);
+    users = rows;
+    res.json({"Server":"Users retrieved properly from DB"});
   });
 });
-
-
 
 app.get("/", (req, res)=>{
     res.json({"Server":"Server running on http://localhost:5000"})
