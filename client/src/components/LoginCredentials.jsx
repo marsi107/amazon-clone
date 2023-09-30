@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateEmail, updatePassword } from '../redux/userHandlingSlice'
 
 const LoginCredentials = () => {
-  // Redux selectors
-  const email = useSelector((state) => state.userHandling.email);
-  const password = useSelector((state) => state.userHandling.password);
   const dispatch = useDispatch();
 
   // Local state for managing input fields

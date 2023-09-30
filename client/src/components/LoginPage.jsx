@@ -9,11 +9,13 @@ const LoginPage = () => {
     const password = useSelector((state)=> state.userHandling.password);
     const dispatch = useDispatch();
 
-    const onHandleLoginClick = () => {
+    const onHandleLogin = (event) => {
         const params = {
             email: email.payload,
             password: password.payload,
           };
+
+        event.preventDefault(); // Prevent the default form submission behavior
         
         axios.post('/login-process', params).then(response => {            
             const { token, userFound, userLoggedIn } = response.data;
@@ -36,17 +38,18 @@ const LoginPage = () => {
   return (
     <div>
         <h1>Login</h1>
-        <LoginCredentials />
-        <Link to={`/register`}>                            
-            Don't have an account? <span className="text-blue-500">Register</span>
-        </Link>
-        <button 
-        className="btn"
-        type="submit"
-        onClick={onHandleLoginClick}
-        >
-            Log In
-        </button>
+        <form action="" method="post" onSubmit={onHandleLogin}>
+            <LoginCredentials />
+            <Link to={`/register`}>                            
+                Don't have an account? <span className="text-blue-500">Register</span>
+            </Link>
+            <button 
+            className="btn"
+            type="submit"
+            >
+                Log In
+            </button>
+        </form>        
     </div>
   )
 }

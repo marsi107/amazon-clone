@@ -9,12 +9,14 @@ const RegisterPage = () => {
     const email = useSelector((state)=> state.userHandling.email);
     const password = useSelector((state)=> state.userHandling.password);
 
-    const onHandleRegisterClick = () => {
+    const onHandleRegister = (event) => {
         const params = {
             name: localName,
             email: email.payload,
             password: password.payload,
-          };
+        };
+
+        event.preventDefault(); // Prevent the default form submission behavior
 
         fetch("/register-process", {
             method: "POST",
@@ -38,28 +40,30 @@ const RegisterPage = () => {
   return (
     <div>
         <h1>Register</h1>
-        <div>
-            <label htmlFor="name">Name</label>
-            <input 
-            className="border" 
-            type="name" 
-            id="name" 
-            name="name" 
-            placeholder="Your Name"
-            required
-            onChange={(e) => setLocalName(e.target.value)}
-            />
-        </div>
-        <LoginCredentials />
-        <Link to={`/login`}>                            
-            Already registered? <span className="text-blue-500">Log In</span>
-        </Link>
-        <button className="btn"
-        type="submit"
-        onClick={onHandleRegisterClick}
-        >
-            Register
-        </button>
+        <form action="" method="post" onSubmit={onHandleRegister}>
+            <div>
+                <label htmlFor="name">Name</label>
+                <input 
+                className="border" 
+                type="name" 
+                id="name" 
+                name="name" 
+                placeholder="Your Name"
+                value={localName}
+                required
+                onChange={(e) => setLocalName(e.target.value)}
+                />
+            </div>
+            <LoginCredentials />
+            <Link to={`/login`}>                            
+                Already registered? <span className="text-blue-500">Log In</span>
+            </Link>
+            <button className="btn"
+            type="submit"
+            >
+                Register
+            </button>
+        </form>        
     </div>
   )
 }
