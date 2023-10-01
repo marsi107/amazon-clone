@@ -6,17 +6,14 @@ const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 const bcrypt = require("bcrypt")
 const bodyParser = require("body-parser")
 const jwt = require("jsonwebtoken")
-const cors = require('cors')
 const app = express()
 app.use(express.json())
 app.use(express.static("../"))
 app.use(express.urlencoded({ extended: false}))
 app.use(bodyParser.json());
-app.use(cors)
 
 const CLIENT_URL = process.env.CLIENT_URL;
 const secretKey = process.env.SESSION_SECRET_KEY;
-const PORT = 5000//process.env.PORT || 5000;
 
 const corsOptions = {
   origin: CLIENT_URL,
@@ -123,4 +120,4 @@ app.post("/create-checkout-session", async (req, res) => {
   })
 
 
-app.listen(PORT, () => {console.log("Server running on port " + PORT)})
+app.listen(5000, () => {console.log("Server running on port 5000")})
