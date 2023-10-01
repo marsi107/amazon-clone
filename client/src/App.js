@@ -15,12 +15,8 @@ const App = () => {
   const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com';
 
   const checkInitialState = async () =>{
-
-    console.log('request to ' + SERVER_URL + '/get-users')
     // Call the get-users when the app start, so the server has all the users info used to user Auth
-    await axios.get(SERVER_URL + '/get-users').then(response => {
-      console.log(response)    
-      console.log('get users response --> ' + response.data.Server)    
+    await axios.get(SERVER_URL + '/get-users').then(response => {   
 
     }).catch(error => {
       console.error('error:', error);
