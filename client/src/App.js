@@ -12,7 +12,7 @@ const App = () => {
   const userLoggedIn = useSelector((state)=> state.userHandling.userLoggedIn);
   const dispatch = useDispatch();
 
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com/';
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com';
 
   const checkInitialState = async () =>{
 
