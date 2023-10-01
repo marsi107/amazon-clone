@@ -24,7 +24,7 @@ const db = new sqlite3.Database('./amazon-clone.db', (err) => {
 
 let users = [];
 
-app.get('/get-users', (req, res) => {
+app.get('https://amazon-clone-4fgu.onrender.com/get-users', (req, res) => {
   db.all('SELECT * FROM users', (err, rows) => {
     if (err) {
       return res.status(500).send(err.message);
