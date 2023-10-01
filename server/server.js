@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require("express")
 const cors = require('cors');
-const sqlite3 = require('sqlite3');
+const pg = require('pg')
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 const bcrypt = require("bcrypt")
 const bodyParser = require("body-parser")
@@ -23,22 +23,21 @@ const corsOptions = {
 
 app.use(cors('*', corsOptions));
 
-const db = new sqlite3.Database('./amazon-clone.db', (err) => {
-  if (err) {
-    console.error('Error connecting to the database:', err.message);
-  } else {
-    console.log('Connected to the database.');
-  }
-});
+const db = new pg.Pool({
+  connectionString: process.env.DB_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+})
 
 let users = [];
 
-app.get('/get-users', (req, res) => {
-  db.all('SELECT * FROM users', (err, rows) => {
+app.get('/get-users', async (req, res) => {
+  db.query('SELECT * FROM users', (err, data) => {
     if (err) {
-      return res.status(500).send(err.message);
+      return res.status(500).send("error: " + err.message);
     }
-    users = rows;
+    users = data.rows;
     res.json({"Server":"Users retrieved properly from DB"});
   });
 });
@@ -89,9 +88,10 @@ app.post("/register-process", async (req, res)=>{
 
   try{
     const hashedPassword = await bcrypt.hash(password, 10)
-    const query = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+    const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
+    const values = [name, email, hashedPassword];
 
-    db.run(query, [name, email, hashedPassword], function (err) {
+    db.query(query, values, function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }else{
