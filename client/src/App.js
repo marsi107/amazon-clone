@@ -16,8 +16,10 @@ const App = () => {
 
   const checkInitialState = async () =>{
 
+    console-log('request to ' + SERVER_URL + '/get-users')
     // Call the get-users when the app start, so the server has all the users info used to user Auth
     await axios.get(SERVER_URL + '/get-users').then(response => {
+      console.log(response)    
       console.log('get users response --> ' + response.data.Server)    
 
     }).catch(error => {
