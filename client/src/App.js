@@ -15,7 +15,7 @@ const App = () => {
   const checkInitialState = async () =>{
 
     // Call the get-users when the app start, so the server has all the users info used to user Auth
-    await axios.get('/get-users');
+    await axios.get('https://amazon-clone-4fgu.onrender.com/get-users');
 
     if(!userLoggedIn && token){
       const params = {
