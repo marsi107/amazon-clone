@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 const CLIENT_URL = process.env.CLIENT_URL;
 const secretKey = process.env.SESSION_SECRET_KEY;
 
+console.log('Client URL ' + CLIENT_URL)
+
 const corsOptions = {
   origin: CLIENT_URL,
 };
