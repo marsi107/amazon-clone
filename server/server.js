@@ -11,7 +11,7 @@ app.use(express.static("../"))
 app.use(express.urlencoded({ extended: false}))
 app.use(bodyParser.json());
 
-const CLIENT_URL = 'http://localhost:3000';
+const CLIENT_URL = process.env.CLIENT_URL;
 const secretKey = process.env.SESSION_SECRET_KEY;
 
 const db = new sqlite3.Database('./amazon-clone.db', (err) => {
