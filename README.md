@@ -31,7 +31,7 @@ You can check how to install the dependencies on the [Environment and Project Se
 - bcrypt should be installed
 - body-parser should be installed
 - jsonwebtoken should be installed
-- sqlite3 should be installed
+- postgreSQL should be installed
 - cors should be installed
 
 ### Client
@@ -86,9 +86,9 @@ Install body-parser (to parse the body of the requests)
 
 Install jsonwebtoken (to get a token with the logged user)
 
-##### `npm i sqlite3`
+##### `npm i pg`
 
-Install sqlite3 (to interact with the SQLite DB)
+Install postgreSQL (to interact with the postgreSQL DBs)
 
 ##### `npm i cors`
 

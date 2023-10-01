@@ -44,7 +44,7 @@ app.get('/get-users', (req, res) => {
 });
 
 app.get("/", (req, res)=>{
-    res.json({"Server":"Server running on http://localhost:5000"})
+    res.json({"Server":"Server running on " + process.env.SERVER_URL || "http://localhost:5000"})
 })
 
 app.post("/login-process", async (req, res)=>{
