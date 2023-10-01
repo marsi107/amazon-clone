@@ -5,6 +5,7 @@ import { removeFromCart } from '../redux/cartSlice'
 import { ES_CURRENCY } from '../utils/constants'
 
 const Checkout = () => {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com';
   const products = useSelector((state)=> state.cart.products);
   const productsNumber = useSelector((state)=> state.cart.productsNumber);
   const subtotal = useSelector((state)=> 
@@ -17,7 +18,7 @@ const Checkout = () => {
   const onHandleCheckoutClick = () => {
     console.log("onHandleCheckoutclick")
 
-    fetch("/create-checkout-session", {
+    fetch(SERVER_URL + "/create-checkout-session", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
