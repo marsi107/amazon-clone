@@ -21,7 +21,7 @@ const corsOptions = {
   origin: CLIENT_URL,
 };
 
-app.use(cors(corsOptions));
+app.use(cors('*', corsOptions));
 
 const db = new sqlite3.Database('./amazon-clone.db', (err) => {
   if (err) {
