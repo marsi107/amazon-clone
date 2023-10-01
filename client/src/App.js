@@ -12,10 +12,17 @@ const App = () => {
   const userLoggedIn = useSelector((state)=> state.userHandling.userLoggedIn);
   const dispatch = useDispatch();
 
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL
+
   const checkInitialState = async () =>{
 
     // Call the get-users when the app start, so the server has all the users info used to user Auth
-    await axios.get('/get-users');
+    await axios.get(SERVER_URL + '/get-users').then(response => {
+      console.log('get users response --> ' + response.data.Server)    
+
+    }).catch(error => {
+      console.error('error:', error);
+    });
 
     if(!userLoggedIn && token){
       const params = {
