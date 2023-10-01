@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require("express")
+const cors = require('cors');
 const sqlite3 = require('sqlite3');
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 const bcrypt = require("bcrypt")
@@ -16,6 +17,12 @@ app.use(cors)
 const CLIENT_URL = process.env.CLIENT_URL;
 const secretKey = process.env.SESSION_SECRET_KEY;
 const PORT = 5000//process.env.PORT || 5000;
+
+const corsOptions = {
+  origin: CLIENT_URL,
+};
+
+app.use(cors(corsOptions));
 
 const db = new sqlite3.Database('./amazon-clone.db', (err) => {
   if (err) {

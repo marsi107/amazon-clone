@@ -1,7 +1,6 @@
 {
   "name": "amazon-clone",
   "version": "0.1.0",
-  "proxy": "https://amazon-clone-4fgu.onrender.com/",
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.0.18",
