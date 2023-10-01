@@ -15,7 +15,7 @@ app.use(cors)
 
 const CLIENT_URL = process.env.CLIENT_URL;
 const secretKey = process.env.SESSION_SECRET_KEY;
-const PORT = process.env.PORT || 5000;
+const PORT = 5000//process.env.PORT || 5000;
 
 const db = new sqlite3.Database('./amazon-clone.db', (err) => {
   if (err) {
