@@ -32,6 +32,7 @@ You can check how to install the dependencies on the [Environment and Project Se
 - body-parser should be installed
 - jsonwebtoken should be installed
 - sqlite3 should be installed
+- cors should be installed
 
 ### Client
 
@@ -88,6 +89,10 @@ Install jsonwebtoken (to get a token with the logged user)
 ##### `npm i sqlite3`
 
 Install sqlite3 (to interact with the SQLite DB)
+
+##### `npm i cors`
+
+Install cors (to allow traffic between client and server)
 
 ### Client
 

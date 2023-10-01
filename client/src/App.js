@@ -31,7 +31,7 @@ const App = () => {
         userId: userId
       };
 
-      await axios.post('/refresh', params).then(response => {
+      await axios.post(SERVER_URL + '/refresh', params).then(response => {
         const { userFound } = response.data;
 
         dispatch(updateName({ type: 'UPDATE_NAME', payload: userFound.name }))    

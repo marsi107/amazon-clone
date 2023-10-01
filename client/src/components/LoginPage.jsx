@@ -9,6 +9,8 @@ const LoginPage = () => {
     const password = useSelector((state)=> state.userHandling.password);
     const dispatch = useDispatch();
 
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com';
+
     const onHandleLogin = (event) => {
         const params = {
             email: email.payload,
@@ -17,7 +19,7 @@ const LoginPage = () => {
 
         event.preventDefault(); // Prevent the default form submission behavior
         
-        axios.post('/login-process', params).then(response => {            
+        axios.post(SERVER_URL + '/login-process', params).then(response => {            
             const { token, userFound, userLoggedIn } = response.data;
 
             // Store the token in local storage or a secure cookie

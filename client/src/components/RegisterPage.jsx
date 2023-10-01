@@ -9,6 +9,8 @@ const RegisterPage = () => {
     const email = useSelector((state)=> state.userHandling.email);
     const password = useSelector((state)=> state.userHandling.password);
 
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com';
+
     const onHandleRegister = (event) => {
         const params = {
             name: localName,
@@ -18,7 +20,7 @@ const RegisterPage = () => {
 
         event.preventDefault(); // Prevent the default form submission behavior
 
-        fetch("/register-process", {
+        fetch(SERVER_URL + "/register-process", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
