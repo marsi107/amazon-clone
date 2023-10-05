@@ -30,7 +30,8 @@ const RegisterPage = () => {
             if (res.ok) return res.json()              
             return res.json().then(json => Promise.reject(json))
         }).then(({ url }) => {
-            window.location = url
+            console.log("url received " + url)
+            //window.location = url
         }).catch(e => {
             console.error(e.error);
             if(e.error == "SQLITE_CONSTRAINT: UNIQUE constraint failed: users.email"){
