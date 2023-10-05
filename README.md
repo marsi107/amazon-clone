@@ -162,12 +162,14 @@ You may also see any lint errors in the console.
 ## Documentation used
 
 - [React documentation](https://reactjs.org/)
+- [API documentation](https://dummyjson.com/docs/products)
 - [API requests documentation](https://javascript.info/fetch)
 - [TailwindCSS documentation](https://tailwindcss.com/docs/guides/create-react-app)
 - [Swiper documentation](https://www.npmjs.com/package/swiper)
 - [Redux documentation](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
 - [Stripe documentation](https://stripe.com/docs/checkout/quickstart)
 - [SQLite documentation](https://www.sqlite.org/docs.html)
+- [HTTP Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)
 
 ## Assets used
 
