@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 const RegisterPage = () => {
 
     const [localName, setLocalName] = useState('');
-    const email = useSelector((state)=> state.userHandling.email);
-    const password = useSelector((state)=> state.userHandling.password);
+    const email = useSelector((state) => state.userHandling.email);
+    const password = useSelector((state) => state.userHandling.password);
 
     const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com';
 
@@ -23,52 +23,51 @@ const RegisterPage = () => {
         fetch(SERVER_URL + "/register-process", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(params),
-        }).then(res => {                
-            if (res.ok) return res.json()              
+        }).then(res => {
+            if (res.ok) return res.json()
             return res.json().then(json => Promise.reject(json))
         }).then(({ url }) => {
-            console.log("url received " + url)
-            //window.location = url
+            window.location = url
         }).catch(e => {
             console.error(e.error);
-            if(e.error == "SQLITE_CONSTRAINT: UNIQUE constraint failed: users.email"){
+            if (e.error == "SQLITE_CONSTRAINT: UNIQUE constraint failed: users.email") {
                 alert('Register failed: Email already used');
-            }            
+            }
         })
     }
 
-  return (
-    <div>
-        <h1>Register</h1>
-        <form action="" method="post" onSubmit={onHandleRegister}>
-            <div>
-                <label htmlFor="name">Name</label>
-                <input 
-                className="border" 
-                type="name" 
-                id="name" 
-                name="name" 
-                placeholder="Your Name"
-                value={localName}
-                required
-                onChange={(e) => setLocalName(e.target.value)}
-                />
-            </div>
-            <LoginCredentials />
-            <Link to={`/login`}>                            
-                Already registered? <span className="text-blue-500">Log In</span>
-            </Link>
-            <button className="btn"
-            type="submit"
-            >
-                Register
-            </button>
-        </form>        
-    </div>
-  )
+    return (
+        <div>
+            <h1>Register</h1>
+            <form action="" method="post" onSubmit={onHandleRegister}>
+                <div>
+                    <label htmlFor="name">Name</label>
+                    <input
+                        className="border"
+                        type="name"
+                        id="name"
+                        name="name"
+                        placeholder="Your Name"
+                        value={localName}
+                        required
+                        onChange={(e) => setLocalName(e.target.value)}
+                    />
+                </div>
+                <LoginCredentials />
+                <Link to={`/login`}>
+                    Already registered? <span className="text-blue-500">Log In</span>
+                </Link>
+                <button className="btn"
+                    type="submit"
+                >
+                    Register
+                </button>
+            </form>
+        </div>
+    )
 }
 
 export default RegisterPage

@@ -6,10 +6,10 @@ import { ES_CURRENCY } from '../utils/constants'
 
 const Checkout = () => {
   const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'https://amazon-clone-4fgu.onrender.com';
-  const products = useSelector((state)=> state.cart.products);
-  const productsNumber = useSelector((state)=> state.cart.productsNumber);
-  const subtotal = useSelector((state)=> 
-    state.cart.products.reduce((subtotal, product)=>
+  const products = useSelector((state) => state.cart.products);
+  const productsNumber = useSelector((state) => state.cart.productsNumber);
+  const subtotal = useSelector((state) =>
+    state.cart.products.reduce((subtotal, product) =>
       subtotal + (product.price * product.quantity), 0
     )
   );
@@ -19,15 +19,14 @@ const Checkout = () => {
     console.log("onHandleCheckoutclick")
 
     fetch(SERVER_URL + "/create-checkout-session", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     }).then(res => {
       if (res.ok) return res.json()
       return res.json().then(json => Promise.reject(json))
     }).then(({ url }) => {
-      console.log("url received " + url)
       window.location = url
     }).catch(e => {
       console.error(e.error)
@@ -43,7 +42,7 @@ const Checkout = () => {
             <div className="text-2xl xl:text-3xl m-4">
               Shopping Cart
             </div>
-            {            
+            {
               products.map(product => {
                 return (
                   <div key={product.id}>
@@ -62,7 +61,7 @@ const Checkout = () => {
                           </div>
                           <div>
                             <button className="text-sm xl:text-base font-semibold rounded text-blue-500 mt-2 mb-1"
-                              onClick={()=> dispatch(removeFromCart(product.id))}
+                              onClick={() => dispatch(removeFromCart(product.id))}
                             >
                               Remove
                             </button>
