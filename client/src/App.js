@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter as BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { HomePage, NavBar, Checkout, ProductPage, SearchResults, LoginPage, RegisterPage, AccountPage } from './components'
 import { updateName, updateEmail, updatePassword, updateUserLoggedIn } from './redux/userHandlingSlice';
