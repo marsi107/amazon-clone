@@ -50,12 +50,12 @@ const App = () => {
       <NavBar />
       <Routes>
           <Route exact path="/" element={<HomePage />}/>
-          <Route  path="/checkout" element={userLoggedIn ? <Checkout /> : <LoginPage />}/>
+          <Route  path="/checkout" element={userLoggedIn != undefined && userLoggedIn ? <Checkout /> : <LoginPage />}/>
           <Route  path="/product/:id" element={<ProductPage />}/>
           <Route  path="/search" element={<SearchResults />}/>
           <Route  path="/login" element={<LoginPage />}/>
           <Route  path="/register" element={<RegisterPage />}/>
-          <Route  path="/account" element={userLoggedIn ? <AccountPage /> : <LoginPage />}/>
+          <Route  path="/account" element={userLoggedIn != undefined && userLoggedIn ? <AccountPage /> : <LoginPage />}/>
       </Routes>
     </BrowserRouter>
   )

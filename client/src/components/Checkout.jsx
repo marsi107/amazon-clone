@@ -28,7 +28,7 @@ const Checkout = () => {
       return res.json().then(json => Promise.reject(json))
     }).then(({ url }) => {
       console.log("url received " + url)
-      //window.location = url
+      window.location = url
     }).catch(e => {
       console.error(e.error)
     })
