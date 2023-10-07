@@ -6,6 +6,8 @@ const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 const bcrypt = require("bcrypt")
 const bodyParser = require("body-parser")
 const jwt = require("jsonwebtoken")
+const fs = require("fs")
+const path = require("path")
 const app = express()
 app.use(express.json())
 app.use(express.static("../"))
@@ -119,7 +121,85 @@ app.post("/create-checkout-session", async (req, res) => {
       });
     
       res.json({url: session.url})
+})
+
+// Only used for dev purposes to upload all the products to stripe
+const dataFilePath = path.join(__dirname, 'products.json');
+
+app.get("/upload-stripe_products", async (req, res) => {
+
+  fs.readFile(dataFilePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error reading JSON file');
+    } else {
+      try {
+        const jsonData = JSON.parse(data);
+        console.log(Object.keys(jsonData).length)
+        for(let i=0;i<Object.keys(jsonData).length;i++){
+          console.log(jsonData[i].id)
+          console.log(jsonData[i].title)
+          console.log(jsonData[i].price)
+          const product = stripe.products.create({    
+            id: jsonData[i].id,
+            name: jsonData[i].title,
+            default_price_data: {
+              unit_amount: jsonData[i].price * 100,
+              currency: 'eur',
+            },
+            expand: ['default_price'],
+          })
+        }
+        res.json(jsonData);
+      } catch (parseError) {
+        console.error(parseError);
+        res.status(500).send('Error parsing JSON data');
+      }
+    }
   })
+
+  
+  //const product = await stripe.products.create({    
+  //  id: "54",
+  //  name: 'btest4',
+  //  default_price_data: {
+  //    unit_amount: 1000,
+  //    currency: 'eur',
+  //  },
+  //  expand: ['default_price'],
+  //})
+
+})
+
+app.post("/test-checkout-session", async (req, res) => {
+  const { prodList } = req.body;
+  const products = await stripe.products.list()
+
+  console.log(prodList)
+
+  //for(let i=0; i < prodList.length; i++){
+//
+  //}
+  const product = products.data.find((prod) => {
+    return prod.id===prodList[0].id
+  })
+  //console.log(product.default_price)
+//
+  //const session = await stripe.checkout.sessions.create({
+  //  line_items: [
+  //    {
+  //      // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+  //      price: product.default_price,
+  //      quantity: 1,
+  //    },
+  //  ],
+  //  mode: 'payment',
+  //  success_url: `${CLIENT_URL}?success=true`,
+  //  cancel_url: `${CLIENT_URL}/checkout?canceled=true`,
+  //});
+//
+  //res.json({url: session.url})
+})
 
 
 app.listen(5000, () => {console.log("Server running on port 5000")})
