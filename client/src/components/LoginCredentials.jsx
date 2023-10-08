@@ -20,27 +20,31 @@ const LoginCredentials = () => {
 
   return (
     <div>
-      <div>
-        <label htmlFor="email">Email</label>
+      <div className="leading-loose pb-2 w-full">
+        <label htmlFor="email" className="font-semibold">
+          Email
+        </label>
         <input
-          className="border"
+          className="border rounded w-full border-slate-500"
           type="email"
           id="email"
           name="email"
-          placeholder="Your Email"
+          placeholder=""
           required
           value={localEmail}
           onChange={(e) => setLocalEmail(e.target.value)}
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="font-semibold">
+          Password
+        </label>
         <input
-          className="border"
+          className="border rounded w-full border-slate-500"
           type="password"
           id="password"
           name="password"
-          placeholder="Your Password"
+          placeholder=""
           required
           value={localPassword}
           onChange={(e) => setLocalPassword(e.target.value)}

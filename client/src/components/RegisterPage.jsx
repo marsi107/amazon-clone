@@ -40,32 +40,38 @@ const RegisterPage = () => {
     }
 
     return (
-        <div>
-            <h1>Register</h1>
-            <form action="" method="post" onSubmit={onHandleRegister}>
-                <div>
-                    <label htmlFor="name">Name</label>
-                    <input
-                        className="border"
-                        type="name"
-                        id="name"
-                        name="name"
-                        placeholder="Your Name"
-                        value={localName}
-                        required
-                        onChange={(e) => setLocalName(e.target.value)}
-                    />
-                </div>
-                <LoginCredentials />
-                <Link to={`/login`}>
-                    Already registered? <span className="text-blue-500">Log In</span>
-                </Link>
-                <button className="btn"
-                    type="submit"
-                >
+        <div className="h-screen bg-amazoneClone-bg pt-0">
+            <div className="min-w-[300px] max-w-[500px] m-auto pt-2 bg bg-white text-center leading-loose">
+                <h1 className="text-3xl xl:text-3xl m-4 font-semibold">
                     Register
-                </button>
-            </form>
+                </h1>
+                <form action="" method="post" onSubmit={onHandleRegister}>
+                    <div>
+                        <label htmlFor="name" className="font-semibold">
+                            Name
+                        </label>
+                        <input
+                            className="border rounded w-full border-slate-500"
+                            type="name"
+                            id="name"
+                            name="name"
+                            placeholder=""
+                            value={localName}
+                            required
+                            onChange={(e) => setLocalName(e.target.value)}
+                        />
+                    </div>
+                    <LoginCredentials />
+                    <Link to={`/login`}>
+                        Already registered? <span className="text-blue-500">Log In</span>
+                    </Link>
+                    <button className="btn"
+                        type="submit"
+                    >
+                        Register
+                    </button>
+                </form>
+            </div>
         </div>
     )
 }
