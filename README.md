@@ -170,6 +170,7 @@ You may also see any lint errors in the console.
 - [Stripe documentation](https://stripe.com/docs/checkout/quickstart)
 - [SQLite documentation](https://www.sqlite.org/docs.html)
 - [HTTP Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)
+- [Render documentation](https://render.com/docs)
 
 ## Assets used
 
