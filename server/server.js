@@ -105,22 +105,58 @@ app.post("/register-process", async (req, res)=>{
   }
 })
 
-
 app.post("/create-checkout-session", async (req, res) => {
-      const session = await stripe.checkout.sessions.create({
-        line_items: [
-          {
-            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-            price: 'price_1Nuvk2DwetCnRMHE5sDpUK3N',
-            quantity: 1,
-          },
-        ],
-        mode: 'payment',
-        success_url: `${CLIENT_URL}?success=true`,
-        cancel_url: `${CLIENT_URL}/checkout?canceled=true`,
-      });
+  const prodList = req.body.products;
+  let lineItems = []
+  const limit = 100
+  let startingAfter = null
+  let allStripeProducts = []
+
+  // Get all stripe products, it has to be done that way, because if not stripe only returns 10 items, it's the default limit
+  while (true) {
+    const options = { limit }
     
-      res.json({url: session.url})
+    if (startingAfter) {
+      options.starting_after = startingAfter;
+    }
+
+    const result = await stripe.products.list(options);
+
+    // Add the retrieved products to the array
+    allStripeProducts = allStripeProducts.concat(result.data);
+
+    // If there are more products to retrieve, set the startingAfter for the next page
+    if (result.has_more) {
+      startingAfter = result.data[result.data.length - 1].id;
+    } else {
+      break; // No more products to retrieve
+    }
+  }
+
+  // Match stripe product with amazon-clone received product
+  for(let i=0; i < prodList.length; i++){
+    const product = await allStripeProducts.find((prod) => {
+      return prod.id==prodList[i].id
+    })
+    console.log(prodList[i].id)
+    console.log(product.default_price)
+    console.log(prodList[i].quantity)
+
+    // Add products to line items so it would appear later in stripe payment
+    lineItems.push({
+      price: product.default_price,
+      quantity: prodList[i].quantity,
+    })
+  }
+
+  const session = await stripe.checkout.sessions.create({
+    line_items: lineItems,
+    mode: 'payment',
+    success_url: `${CLIENT_URL}?success=true`,
+    cancel_url: `${CLIENT_URL}/checkout?canceled=true`,
+  });
+
+  res.json({url: session.url})
 })
 
 // Only used for dev purposes to upload all the products to stripe
@@ -158,7 +194,6 @@ app.get("/upload-stripe_products", async (req, res) => {
     }
   })
 
-  
   //const product = await stripe.products.create({    
   //  id: "54",
   //  name: 'btest4',
@@ -171,35 +206,17 @@ app.get("/upload-stripe_products", async (req, res) => {
 
 })
 
-app.post("/test-checkout-session", async (req, res) => {
-  const { prodList } = req.body;
-  const products = await stripe.products.list()
-
-  console.log(prodList)
-
-  //for(let i=0; i < prodList.length; i++){
-//
-  //}
-  const product = products.data.find((prod) => {
-    return prod.id===prodList[0].id
+app.get("/upload-one-stripe", async (req, res) => {
+  const product = stripe.products.create({    
+    id: 1,
+    name: "Guinness World Records 2023",
+    default_price_data: {
+      unit_amount: 8.50 * 100,
+      currency: 'eur',
+    },
+    expand: ['default_price'],
   })
-  //console.log(product.default_price)
-//
-  //const session = await stripe.checkout.sessions.create({
-  //  line_items: [
-  //    {
-  //      // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-  //      price: product.default_price,
-  //      quantity: 1,
-  //    },
-  //  ],
-  //  mode: 'payment',
-  //  success_url: `${CLIENT_URL}?success=true`,
-  //  cancel_url: `${CLIENT_URL}/checkout?canceled=true`,
-  //});
-//
-  //res.json({url: session.url})
+  res.json({product})
 })
-
 
 app.listen(5000, () => {console.log("Server running on port 5000")})

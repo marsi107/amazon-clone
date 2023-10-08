@@ -16,13 +16,16 @@ const Checkout = () => {
   const dispatch = useDispatch();
 
   const onHandleCheckoutClick = () => {
-    console.log("onHandleCheckoutclick")
+    const params = {
+      products: products
+    };
 
     fetch(SERVER_URL + "/create-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(params),
     }).then(res => {
       if (res.ok) return res.json()
       return res.json().then(json => Promise.reject(json))
