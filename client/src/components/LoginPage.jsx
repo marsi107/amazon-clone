@@ -24,7 +24,7 @@ const LoginPage = () => {
 
             // Store the token in local storage or a secure cookie
             localStorage.setItem('token', token);
-            localStorage.setItem('userId', userFound.id);
+            localStorage.setItem('userId', userFound._id);
             dispatch(updateName({ type: 'UPDATE_NAME', payload: userFound.name }))
             dispatch(updateEmail({ type: 'UPDATE_EMAIL', payload: userFound.email }))
             dispatch(updatePassword({ type: 'UPDATE_PASSWORD', payload: userFound.password }))

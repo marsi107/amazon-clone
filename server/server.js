@@ -1,13 +1,14 @@
 require('dotenv').config()
 const express = require("express")
 const cors = require('cors');
-const pg = require('pg')
+const mongoose = require("mongoose")
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 const bcrypt = require("bcrypt")
 const bodyParser = require("body-parser")
 const jwt = require("jsonwebtoken")
 const fs = require("fs")
-const path = require("path")
+const path = require("path");
+const { ObjectId } = require('mongodb');
 const app = express()
 app.use(express.json())
 app.use(express.static("../"))
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 const CLIENT_URL = process.env.CLIENT_URL;
 const secretKey = process.env.SESSION_SECRET_KEY;
+const uriDB = process.env.URI_DB
 
 console.log('Client URL ' + CLIENT_URL)
 
@@ -25,24 +27,38 @@ const corsOptions = {
 
 app.use(cors('*', corsOptions));
 
-const db = new pg.Pool({
-  connectionString: process.env.DB_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+mongoose.connect(uriDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection
+
+db.on("error", console.error.bind(console, "MongoDB connection error:"))
+db.once("open", () => {
+  console.log("Connected to MongoDB");
 })
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+});
+
+const User = mongoose.model("User", userSchema);
+
 
 let users = [];
 
 app.get('/get-users', async (req, res) => {
-  db.query('SELECT * FROM users', (err, data) => {
-    if (err) {
-      return res.status(500).send("error: " + err.message);
-    }
-    users = data.rows;
-    res.json({"Server":"Users retrieved properly from DB"});
-  });
-});
+  try {
+    const retrievedUsers = await User.find();
+    users = retrievedUsers
+    res.json(retrievedUsers)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to retrieve users' });
+  }
+})
 
 app.get("/", (req, res)=>{
     res.json({"Server":"Server running on " + process.env.SERVER_URL || "http://localhost:5000"})
@@ -76,7 +92,7 @@ app.post("/login-process", async (req, res)=>{
 
 app.post("/refresh", async (req, res)=>{
   const { userId } = req.body;
-  const userFound = users.find(user => user.id == userId);
+  const userFound = users.find(user => user._id == userId);
 
   if (!userFound) {
     res.status(401).json({ message: 'Invalid user id' });
@@ -90,17 +106,17 @@ app.post("/register-process", async (req, res)=>{
 
   try{
     const hashedPassword = await bcrypt.hash(password, 10)
-    const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
-    const values = [name, email, hashedPassword];
-
-    db.query(query, values, function (err) {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }else{
-        res.json({url: '/login'})
-      }
+    
+    const newUser = new User({
+      name: name,
+      email: email,
+      password: hashedPassword,
     });
-  }catch{
+
+    await newUser.save(); // Use `await` to handle the promise returned by `save`
+
+    res.json({ url: "/login" })
+  }catch{      
       res.json({url: '/register'})
   }
 })

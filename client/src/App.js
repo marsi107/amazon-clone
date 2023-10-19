@@ -31,8 +31,8 @@ const App = () => {
         const { userFound } = response.data;
 
         dispatch(updateName({ type: 'UPDATE_NAME', payload: userFound.name }))    
-        dispatch(updateEmail({ type: 'UPDATE_EMAIL', payload: userFound.name }))    
-        dispatch(updatePassword({ type: 'UPDATE_PASSWORD', payload: userFound.name }))    
+        dispatch(updateEmail({ type: 'UPDATE_EMAIL', payload: userFound.email }))    
+        dispatch(updatePassword({ type: 'UPDATE_PASSWORD', payload: userFound.password }))    
         dispatch(updateUserLoggedIn({ type: 'UPDATE_USER_LOGGEDIN', payload: true }))    
 
       }).catch(error => {
